@@ -52,6 +52,12 @@ Routes are defined in `App.jsx`'s `<AppRoutes>`. All routes are accessible witho
 
 Search criteria flow through URL query params (`src/utils/routes.js` — `buildResultsPath` / `readCriteria`).
 
+### MCP Server
+
+`.mcp.json` at the project root configures the `asgardeo-mcp` MCP server — a local binary that exposes Asgardeo management API tools to Claude. The server reads `ASGARDEO_BASE_URL`, `ASGARDEO_CLIENT_ID`, and `ASGARDEO_CLIENT_SECRET` from its `env` block.
+
+Note: MCP config must be at the project root as `.mcp.json`, not inside `.claude/`.
+
 ### AI chat widget
 
 `ChatWidget` in `App.jsx` maintains a persistent WebSocket connection to `VITE_AGENT_CHAT_URL` with exponential backoff reconnection (700 ms → 4 s). Pages can trigger the deal-alert flow by dispatching a `wayfinder:deal-alert-consent` custom DOM event; the widget intercepts it, shows a criteria card, and sends the result to the agent.
